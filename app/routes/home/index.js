@@ -5,7 +5,7 @@ module.exports = (req, res) => {
 
   getPages(booksPath)
     .then((pages) => {
-      const filename = pages.map(page => page.path);
+      const filename = pages.map(page => `${page.less()}\t\t${page.summary()}`);
       res.render('index', { data: filename.join('<br>') });
     })
     .catch(() => {
